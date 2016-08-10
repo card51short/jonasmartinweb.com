@@ -1,0 +1,757 @@
+<html>
+<head>
+    <title>Black Jack</title>
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <script type="text/javascript">
+        
+        //create variable with all 52 cards
+        var randomCards= new Array ("images/cards/2c.png", "images/cards/2s.png","images/cards/2h.png", "images/cards/2d.png", "images/cards/3c.png", "images/cards/3s.png","images/cards/3h.png", "images/cards/3d.png",                                        "images/cards/4c.png", "images/cards/4s.png","images/cards/4h.png", "images/cards/4d.png", "images/cards/5c.png", "images/cards/5s.png","images/cards/5h.png", "images/cards/5d.png",                                        "images/cards/6c.png", "images/cards/6s.png","images/cards/6h.png", "images/cards/6d.png", "images/cards/7c.png", "images/cards/7s.png","images/cards/7h.png", "images/cards/7d.png",                                        "images/cards/8c.png", "images/cards/8s.png","images/cards/8h.png", "images/cards/8d.png", "images/cards/9c.png", "images/cards/9s.png","images/cards/9h.png", "images/cards/9d.png",                                        "images/cards/10cooo.png", "images/cards/10sooo.png","images/cards/10hooo.png", "images/cards/10dooo.png","images/cards/jcooo.png", "images/cards/jsooo.png","images/cards/jhooo.png",                                        "images/cards/jdooo.png", "images/cards/qcooo.png", "images/cards/qsooo.png","images/cards/qhooo.png", "images/cards/qdooo.png", "images/cards/kcooo.png", "images/cards/ksooo.png",                                        "images/cards/khooo.png", "images/cards/kdooo.png", "images/cards/acxxx.png", "images/cards/asxxx.png","images/cards/ahxxx.png", "images/cards/adxxx.png");
+        
+        var playerHand = 0;
+        var dealerHand = 0;
+        var pHasAce = false;
+        var dHasAce = false;
+        var pWins = 0;
+        var dWins = 0;
+        
+        function setup() {
+            document.getElementById("hitButton").disabled = true;
+            document.getElementById("stayButton").disabled = true;
+        }
+        
+        function dealCards() {
+            //set aces to false
+            pHasAce = false;
+            dHasAce = false;
+            
+            //set game results to blank
+            document.getElementById("score").innerHTML = " ";
+            playerHand = 0;
+            dealerHand = 0;
+                   
+           //create random numbers
+           var randomNumberd1 = Math.floor((randomCards.length-1)*Math.random());
+           var randomNumberp1 = Math.floor((randomCards.length-1)*Math.random());
+           var randomNumberp2 = Math.floor((randomCards.length-1)*Math.random());
+            
+            //set 2 player cards and 1 dealer card set and other dealer card face down
+            document.getElementById("d1").setAttribute("src", randomCards[randomNumberd1]);
+            document.getElementById("d2").setAttribute("src", "images/cards/rb.png");
+            document.getElementById("p1").setAttribute("src", randomCards[randomNumberp1]);
+            document.getElementById("p2").setAttribute("src", randomCards[randomNumberp2]);
+            
+            // set unused cards to blank
+            document.getElementById("p3").setAttribute("src", " ");
+            document.getElementById("p4").setAttribute("src", " ");
+            document.getElementById("p5").setAttribute("src", " ");
+            document.getElementById("p6").setAttribute("src", " ");
+            document.getElementById("p7").setAttribute("src", " ");
+            
+            document.getElementById("d3").setAttribute("src", " ");
+            document.getElementById("d4").setAttribute("src", " ");
+            document.getElementById("d5").setAttribute("src", " ");
+            document.getElementById("d6").setAttribute("src", " ");
+            document.getElementById("d7").setAttribute("src", " ");
+            
+            // Calculate player's starting hand
+            
+            if(document.getElementById("p1").getAttribute("src").includes("2") || document.getElementById("p2").getAttribute("src").includes("2")) {
+                playerHand += 2;
+                if (document.getElementById("p1").getAttribute("src").includes("2") && document.getElementById("p2").getAttribute("src").includes("2")) {
+                    playerHand += 2;
+                }
+            }
+            if (document.getElementById("p1").getAttribute("src").includes("3") || document.getElementById("p2").getAttribute("src").includes("3")) {
+                playerHand += 3;
+                if (document.getElementById("p1").getAttribute("src").includes("3") && document.getElementById("p2").getAttribute("src").includes("3")) {
+                    playerHand += 3;
+                }
+            }
+            if (document.getElementById("p1").getAttribute("src").includes("4") || document.getElementById("p2").getAttribute("src").includes("4")) {
+                playerHand += 4;
+                if (document.getElementById("p1").getAttribute("src").includes("4") && document.getElementById("p2").getAttribute("src").includes("4")) {
+                    playerHand += 4;
+                }
+            }
+            if (document.getElementById("p1").getAttribute("src").includes("5") || document.getElementById("p2").getAttribute("src").includes("5")) {
+                playerHand += 5;
+                if (document.getElementById("p1").getAttribute("src").includes("5") && document.getElementById("p2").getAttribute("src").includes("5")) {
+                    playerHand += 5;
+                }
+            }
+            if (document.getElementById("p1").getAttribute("src").includes("6") || document.getElementById("p2").getAttribute("src").includes("6")) {
+                playerHand += 6;
+                if (document.getElementById("p1").getAttribute("src").includes("6") && document.getElementById("p2").getAttribute("src").includes("6")) {
+                    playerHand += 6;
+                }
+            }
+            if (document.getElementById("p1").getAttribute("src").includes("7") || document.getElementById("p2").getAttribute("src").includes("7")) {
+                playerHand += 7;
+                if (document.getElementById("p1").getAttribute("src").includes("7") && document.getElementById("p2").getAttribute("src").includes("7")) {
+                    playerHand += 7;
+                }
+            }
+            if (document.getElementById("p1").getAttribute("src").includes("8") || document.getElementById("p2").getAttribute("src").includes("8")) {
+                playerHand += 8;
+                if (document.getElementById("p1").getAttribute("src").includes("8") && document.getElementById("p2").getAttribute("src").includes("8")) {
+                    playerHand += 8;
+                }
+            }
+            if (document.getElementById("p1").getAttribute("src").includes("9") || document.getElementById("p2").getAttribute("src").includes("9")) {
+                playerHand += 9;
+                if (document.getElementById("p1").getAttribute("src").includes("9") && document.getElementById("p2").getAttribute("src").includes("9")) {
+                    playerHand += 9;
+                }
+            }
+            if (document.getElementById("p1").getAttribute("src").includes("ooo") || document.getElementById("p2").getAttribute("src").includes("ooo")) {
+                playerHand += 10;
+                if (document.getElementById("p1").getAttribute("src").includes("ooo") && document.getElementById("p2").getAttribute("src").includes("ooo")) {
+                    playerHand += 10;
+                }
+            }
+            if (document.getElementById("p1").getAttribute("src").includes("xxx") || document.getElementById("p2").getAttribute("src").includes("xxx")) {
+                playerHand += 1;
+                pHasAce = true;
+                if (document.getElementById("p1").getAttribute("src").includes("xxx") && document.getElementById("p2").getAttribute("src").includes("xxx")) {
+                    playerHand += 1;
+                }
+            }
+            // Calculate Dealer's starting hand
+            
+            if (document.getElementById("d1").getAttribute("src").includes("2")) {
+                dealerHand += 2;
+            }
+            if (document.getElementById("d1").getAttribute("src").includes("3")) {
+                dealerHand += 3;
+            }
+            if (document.getElementById("d1").getAttribute("src").includes("4")) {
+                dealerHand += 4;
+            }
+            if (document.getElementById("d1").getAttribute("src").includes("5")) {
+                dealerHand += 5;
+            }
+            if (document.getElementById("d1").getAttribute("src").includes("6")) {
+                dealerHand += 6;
+            }
+            if (document.getElementById("d1").getAttribute("src").includes("7")) {
+                dealerHand += 7;
+            }
+            if (document.getElementById("d1").getAttribute("src").includes("8")) {
+                dealerHand += 8;
+            }
+            if (document.getElementById("d1").getAttribute("src").includes("9")) {
+                dealerHand += 9;
+            }
+            if (document.getElementById("d1").getAttribute("src").includes("ooo")) {
+                dealerHand += 10;
+            }
+            if (document.getElementById("d1").getAttribute("src").includes("xxx")) {
+                dealerHand += 1;
+                dHasAce = true;
+            }
+            
+            // set player and dealer hand values
+            if (pHasAce) {
+                if (playerHand === 11) {
+                    document.getElementById("score").innerHTML = "BLACKJACK!";
+                    pWins += 1;
+                    document.getElementById("pScore").innerHTML = "Player wins: " + pWins;
+                    document.getElementById("dScore").innerHTML = "Dealer wins: " + dWins;
+                    document.getElementById("hitButton").disabled = true;
+                    document.getElementById("stayButton").disabled = true;
+                    document.getElementById("dealButton").disabled = false;
+                }else
+                    document.getElementById("playersTotal").innerHTML = "Player's total: " + playerHand + " or " + (playerHand+10);
+                    document.getElementById("dealersTotal").innerHTML = "Dealers's total: " + dealerHand;
+                    document.getElementById("dealButton").disabled = true;
+                    document.getElementById("hitButton").disabled = false;
+                    document.getElementById("stayButton").disabled = false;
+            }else {
+                document.getElementById("playersTotal").innerHTML = "Players's total: " + playerHand;
+                document.getElementById("dealersTotal").innerHTML = "Dealers's total: " + dealerHand;
+                document.getElementById("hitButton").disabled = false;
+                document.getElementById("stayButton").disabled = false;
+                document.getElementById("dealButton").disabled = true;
+            }  
+        }
+        
+        function hit() {
+            
+            var p3Check = document.getElementById("p3").getAttribute("src");
+            var p4Check = document.getElementById("p4").getAttribute("src");
+            var p5Check = document.getElementById("p5").getAttribute("src");
+            var p6Check = document.getElementById("p6").getAttribute("src");
+            var p7Check = document.getElementById("p7").getAttribute("src");
+            
+            //create random numbers
+            var randomNumberp3 = Math.floor((randomCards.length-1)*Math.random());
+            var randomNumberp4 = Math.floor((randomCards.length-1)*Math.random());
+            var randomNumberp5 = Math.floor((randomCards.length-1)*Math.random());
+            var randomNumberp6 = Math.floor((randomCards.length-1)*Math.random());
+            var randomNumberp7 = Math.floor((randomCards.length-1)*Math.random());
+           
+           //set Player value after each hit. 
+            if (p3Check == " ") {
+                document.getElementById("p3").setAttribute("src", randomCards[randomNumberp3]);
+                if (document.getElementById("p3").getAttribute("src").includes("2")) {
+                    playerHand += 2;
+                }
+                if (document.getElementById("p3").getAttribute("src").includes("3")) {
+                    playerHand += 3;
+                }
+                if (document.getElementById("p3").getAttribute("src").includes("4")) {
+                    playerHand += 4;
+                }
+                if (document.getElementById("p3").getAttribute("src").includes("5")) {
+                    playerHand += 5;
+                }
+                if (document.getElementById("p3").getAttribute("src").includes("6")) {
+                    playerHand += 6;
+                }
+                if (document.getElementById("p3").getAttribute("src").includes("7")) {
+                    playerHand += 7;
+                }
+                if (document.getElementById("p3").getAttribute("src").includes("8")) {
+                    playerHand += 8;
+                }
+                if (document.getElementById("p3").getAttribute("src").includes("9")) {
+                    playerHand += 9;
+                }
+                if (document.getElementById("p3").getAttribute("src").includes("ooo")) {
+                    playerHand += 10;
+                }
+                if (document.getElementById("p3").getAttribute("src").includes("xxx")) {
+                    playerHand += 1;
+                    pHasAce = true;
+                }
+                if (pHasAce) {
+                    if ((playerHand+10) > 21) {
+                        document.getElementById("playersTotal").innerHTML = "Player's total: " + playerHand;
+                    }else if ((playerHand+10) == 21 ||(playerHand+10) == 20 || (playerHand+10) == 19 || (playerHand+10) == 18 || (playerHand+10) == 17 ) {
+                        playerHand += 10;
+                        document.getElementById("playersTotal").innerHTML = "Player's total: " + playerHand+10;
+                    }else
+                        document.getElementById("playersTotal").innerHTML = "Player's total: " + playerHand + " or " + (playerHand+10);
+                }else 
+                    document.getElementById("playersTotal").innerHTML = "Player's total: " + playerHand;
+                
+            } else if (p4Check == " ") {
+                document.getElementById("p4").setAttribute("src", randomCards[randomNumberp4]);
+                if (document.getElementById("p4").getAttribute("src").includes("2")) {
+                    playerHand += 2;
+                }
+                if (document.getElementById("p4").getAttribute("src").includes("3")) {
+                    playerHand += 3;
+                }
+                if (document.getElementById("p4").getAttribute("src").includes("4")) {
+                    playerHand += 4;
+                }
+                if (document.getElementById("p4").getAttribute("src").includes("5")) {
+                    playerHand += 5;
+                }
+                if (document.getElementById("p4").getAttribute("src").includes("6")) {
+                    playerHand += 6;
+                }
+                if (document.getElementById("p4").getAttribute("src").includes("7")) {
+                    playerHand += 7;
+                }
+                if (document.getElementById("p4").getAttribute("src").includes("8")) {
+                    playerHand += 8;
+                }
+                if (document.getElementById("p4").getAttribute("src").includes("9")) {
+                    playerHand += 9;
+                }
+                if (document.getElementById("p4").getAttribute("src").includes("ooo")) {
+                    playerHand += 10;
+                }
+                if (document.getElementById("p4").getAttribute("src").includes("xxx")) {
+                    playerHand += 1;
+                    pHasAce = true;
+                }
+                if (pHasAce) {
+                    if ((playerHand+10) > 21) {
+                        document.getElementById("playersTotal").innerHTML = "Player's total: " + playerHand;
+                    }else if ((playerHand+10) == 21 ||(playerHand+10) == 20 || (playerHand+10) == 19 || (playerHand+10) == 18 || (playerHand+10) == 17 ) {
+                        playerHand += 10;
+                        document.getElementById("playersTotal").innerHTML = "Player's total: " + playerHand+10;
+                    }else
+                        document.getElementById("playersTotal").innerHTML = "Player's total: " + playerHand + " or " + (playerHand+10);
+                }else 
+                    document.getElementById("playersTotal").innerHTML = "Player's total: " + playerHand;
+                    
+            } else if (p5Check == " ") {
+                document.getElementById("p5").setAttribute("src", randomCards[randomNumberp5]);
+                if (document.getElementById("p5").getAttribute("src").includes("2")) {
+                    playerHand += 2;
+                }
+                if (document.getElementById("p5").getAttribute("src").includes("3")) {
+                    playerHand += 3;
+                }
+                if (document.getElementById("p5").getAttribute("src").includes("4")) {
+                    playerHand += 4;
+                }
+                if (document.getElementById("p5").getAttribute("src").includes("5")) {
+                    playerHand += 5;
+                }
+                if (document.getElementById("p5").getAttribute("src").includes("6")) {
+                    playerHand += 6;
+                }
+                if (document.getElementById("p5").getAttribute("src").includes("7")) {
+                    playerHand += 7;
+                }
+                if (document.getElementById("p5").getAttribute("src").includes("8")) {
+                    playerHand += 8;
+                }
+                if (document.getElementById("p5").getAttribute("src").includes("9")) {
+                    playerHand += 9;
+                }
+                if (document.getElementById("p5").getAttribute("src").includes("ooo")) {
+                    playerHand += 10;
+                }
+                if (document.getElementById("p5").getAttribute("src").includes("xxx")) {
+                    playerHand += 1;
+                    pHasAce = true;
+                }
+                if (pHasAce) {
+                    if ((playerHand+10) > 21) {
+                        document.getElementById("playersTotal").innerHTML = "Player's total: " + playerHand;
+                    }else if ((playerHand+10) == 21 ||(playerHand+10) == 20 || (playerHand+10) == 19 || (playerHand+10) == 18 || (playerHand+10) == 17 ) {
+                        playerHand += 10;
+                        document.getElementById("playersTotal").innerHTML = "Player's total: " + playerHand+10;
+                    }else
+                        document.getElementById("playersTotal").innerHTML = "Player's total: " + playerHand + " or " + (playerHand+10);
+                }else 
+                    document.getElementById("playersTotal").innerHTML = "Player's total: " + playerHand;
+                    
+            } else if (p6Check == " ") {
+                document.getElementById("p6").setAttribute("src", randomCards[randomNumberp6]);
+                if (document.getElementById("p6").getAttribute("src").includes("2")) {
+                    playerHand += 2;
+                }
+                if (document.getElementById("p6").getAttribute("src").includes("3")) {
+                    playerHand += 3;
+                }
+                if (document.getElementById("p6").getAttribute("src").includes("4")) {
+                    playerHand += 4;
+                }
+                if (document.getElementById("p6").getAttribute("src").includes("5")) {
+                    playerHand += 5;
+                }
+                if (document.getElementById("p6").getAttribute("src").includes("6")) {
+                    playerHand += 6;
+                }
+                if (document.getElementById("p6").getAttribute("src").includes("7")) {
+                    playerHand += 7;
+                }
+                if (document.getElementById("p6").getAttribute("src").includes("8")) {
+                    playerHand += 8;
+                }
+                if (document.getElementById("p6").getAttribute("src").includes("9")) {
+                    playerHand += 9;
+                }
+                if (document.getElementById("p6").getAttribute("src").includes("ooo")) {
+                    playerHand += 10;
+                }
+                if (document.getElementById("p6").getAttribute("src").includes("xxx")) {
+                    playerHand += 1;
+                    pHasAce = true;
+                }
+                if (pHasAce) {
+                    if ((playerHand+10) > 21) {
+                        document.getElementById("playersTotal").innerHTML = "Player's total: " + playerHand;
+                    }else if ((playerHand+10) == 21 ||(playerHand+10) == 20 || (playerHand+10) == 19 || (playerHand+10) == 18 || (playerHand+10) == 17 ) {
+                        playerHand += 10;
+                        document.getElementById("playersTotal").innerHTML = "Player's total: " + playerHand+10;
+                    }else
+                        document.getElementById("playersTotal").innerHTML = "Player's total: " + playerHand + " or " + (playerHand+10);
+                }else 
+                    document.getElementById("playersTotal").innerHTML = "Player's total: " + playerHand;
+                    
+            } else if (p7Check == " ") {
+                document.getElementById("p7").setAttribute("src", randomCards[randomNumberp7]);
+                if (document.getElementById("p7").getAttribute("src").includes("2")) {
+                    playerHand += 2;
+                }
+                if (document.getElementById("p7").getAttribute("src").includes("3")) {
+                    playerHand += 3;
+                }
+                if (document.getElementById("p7").getAttribute("src").includes("4")) {
+                    playerHand += 4;
+                }
+                if (document.getElementById("p7").getAttribute("src").includes("5")) {
+                    playerHand += 5;
+                }
+                if (document.getElementById("p7").getAttribute("src").includes("6")) {
+                    playerHand += 6;
+                }
+                if (document.getElementById("p7").getAttribute("src").includes("7")) {
+                    playerHand += 7;
+                }
+                if (document.getElementById("p7").getAttribute("src").includes("8")) {
+                    playerHand += 8;
+                }
+                if (document.getElementById("p7").getAttribute("src").includes("9")) {
+                    playerHand += 9;
+                }
+                if (document.getElementById("p7").getAttribute("src").includes("ooo")) {
+                    playerHand += 10;
+                }
+                if (document.getElementById("p7").getAttribute("src").includes("xxx")) {
+                    playerHand += 1;
+                    pHasAce = true;
+                }
+                if (pHasAce) {
+                    if ((playerHand+10) > 21) {
+                        document.getElementById("playersTotal").innerHTML = "Player's total: " + playerHand;
+                    }else if ((playerHand+10) == 21 ||(playerHand+10) == 20 || (playerHand+10) == 19 || (playerHand+10) == 18 || (playerHand+10) == 17 ) {
+                        playerHand += 10;
+                        document.getElementById("playersTotal").innerHTML = "Player's total: " + playerHand+10;
+                    }else
+                        document.getElementById("playersTotal").innerHTML = "Player's total: " + playerHand + " or " + (playerHand+10);
+                }else 
+                    document.getElementById("playersTotal").innerHTML = "Player's total: " + playerHand;
+            } 
+                if (playerHand > 21) {
+                document.getElementById("score").innerHTML = "You BUST!";
+                document.getElementById("hitButton").disabled = true;
+                document.getElementById("stayButton").disabled = true;
+                document.getElementById("dealButton").disabled = false;
+                dWins += 1;
+                document.getElementById("pScore").innerHTML = "Player wins: " + pWins;
+                document.getElementById("dScore").innerHTML = "Dealer wins: " + dWins;
+            }
+        }
+        function stay() {
+            if (pHasAce) {
+                if (playerHand <= 10) {
+                    document.getElementById("playersTotal").innerHTML = "Player's total: " + (playerHand+10);
+                }
+            }
+            
+            //create random number
+            var randomNumberd2 = Math.floor((randomCards.length-1)*Math.random());
+            
+            //overturn second dealer card
+            document.getElementById("d2").setAttribute("src", randomCards[randomNumberd2]);
+            
+            if (document.getElementById("d2").getAttribute("src").includes("xxx")) {
+                dealerHand += 1;
+                dHasAce = true;
+            }
+            
+            if (dHasAce) {
+                if (dealerHand == 11) {
+                    document.getElementById("score").innerHTML = "You LOSE!";
+                    dWins += 1;
+                    document.getElementById("pScore").innerHTML = "Player wins: " + pWins;
+                    document.getElementById("dScore").innerHTML = "Dealer wins: " + dWins;
+                    document.getElementById("dealButton").disabled = false;
+                }if (dealerHand == 10 || dealerHand == 9 || dealerHand == 8) {
+                    dealerHand = dealerHand+10;
+                    document.getElementById("pScore").innerHTML = "Player wins: " + pWins;
+                    document.getElementById("dScore").innerHTML = "Dealer wins: " + dWins;
+                    
+                }
+            }
+            //disable all buttons
+            document.getElementById("hitButton").disabled = true;
+            document.getElementById("stayButton").disabled = true;
+            
+            
+            
+            //draw dealer cards until 17 or above
+            if (document.getElementById("d2").getAttribute("src").includes("2")) {
+                dealerHand += 2;
+            }
+            if (document.getElementById("d2").getAttribute("src").includes("3")) {
+                dealerHand += 3;
+            }
+            if (document.getElementById("d2").getAttribute("src").includes("4")) {
+                dealerHand += 4;
+            }
+            if (document.getElementById("d2").getAttribute("src").includes("5")) {
+                dealerHand += 5;
+            }
+            if (document.getElementById("d2").getAttribute("src").includes("6")) {
+                dealerHand += 6;
+            }
+            if (document.getElementById("d2").getAttribute("src").includes("7")) {
+                dealerHand += 7;
+            }
+            if (document.getElementById("d2").getAttribute("src").includes("8")) {
+                dealerHand += 8;
+            }
+            if (document.getElementById("d2").getAttribute("src").includes("9")) {
+                dealerHand += 9;
+            }
+            if (document.getElementById("d2").getAttribute("src").includes("ooo")) {
+                dealerHand += 10;
+            }
+            
+            document.getElementById("dealersTotal").innerHTML = "Dealer's total: " + dealerHand;
+            if (dealerHand <= 16) {
+                document.getElementById("d3").setAttribute("src", "images/cards/10hooo.png");
+                
+                if (document.getElementById("d3").getAttribute("src").includes("2")) {
+                    dealerHand += 2;
+                }
+                if (document.getElementById("d3").getAttribute("src").includes("3")) {
+                    dealerHand += 3;
+                }
+                if (document.getElementById("d3").getAttribute("src").includes("4")) {
+                    dealerHand += 4;
+                }
+                if (document.getElementById("d3").getAttribute("src").includes("5")) {
+                    dealerHand += 5;
+                }
+                if (document.getElementById("d3").getAttribute("src").includes("6")) {
+                    dealerHand += 6;
+                }
+                if (document.getElementById("d3").getAttribute("src").includes("7")) {
+                    dealerHand += 7;
+                }
+                if (document.getElementById("d3").getAttribute("src").includes("8")) {
+                    dealerHand += 8;
+                }
+                if (document.getElementById("d3").getAttribute("src").includes("9")) {
+                    dealerHand += 9;
+                }
+                if (document.getElementById("d3").getAttribute("src").includes("ooo")) {
+                    dealerHand += 10;
+                }
+                if (document.getElementById("d3").getAttribute("src").includes("xxx")) {
+                    dealerHand += 1;
+                    dHasAce = true;
+            }
+            document.getElementById("dealersTotal").innerHTML = "Dealer's total: " + dealerHand;
+            }
+            
+            if (dealerHand <= 16) {
+                document.getElementById("d4").setAttribute("src", "images/cards/4h.png");
+                
+                if (document.getElementById("d4").getAttribute("src").includes("2")) {
+                    dealerHand += 2;
+                }
+                if (document.getElementById("d4").getAttribute("src").includes("3")) {
+                    dealerHand += 3;
+                }
+                if (document.getElementById("d4").getAttribute("src").includes("4")) {
+                    dealerHand += 4;
+                }
+                if (document.getElementById("d4").getAttribute("src").includes("5")) {
+                    dealerHand += 5;
+                }
+                if (document.getElementById("d4").getAttribute("src").includes("6")) {
+                    dealerHand += 6;
+                }
+                if (document.getElementById("d4").getAttribute("src").includes("7")) {
+                    dealerHand += 7;
+                }
+                if (document.getElementById("d4").getAttribute("src").includes("8")) {
+                    dealerHand += 8;
+                }
+                if (document.getElementById("d4").getAttribute("src").includes("9")) {
+                    dealerHand += 9;
+                }
+                if (document.getElementById("d4").getAttribute("src").includes("ooo")) {
+                    dealerHand += 10;
+                }
+                if (document.getElementById("d4").getAttribute("src").includes("xxx")) {
+                    dealerHand += 1;
+                    dHasAce = true;
+                }
+                document.getElementById("dealersTotal").innerHTML = "Dealer's total: " + dealerHand;
+            }
+            if (dealerHand <= 16) {
+                document.getElementById("d5").setAttribute("src", "images/cards/4h.png");
+                
+                if (document.getElementById("d5").getAttribute("src").includes("2")) {
+                    dealerHand += 2;
+                }
+                if (document.getElementById("d5").getAttribute("src").includes("3")) {
+                    dealerHand += 3;
+                }
+                if (document.getElementById("d5").getAttribute("src").includes("4")) {
+                    dealerHand += 4;
+                }
+                if (document.getElementById("d5").getAttribute("src").includes("5")) {
+                    dealerHand += 5;
+                }
+                if (document.getElementById("d5").getAttribute("src").includes("6")) {
+                    dealerHand += 6;
+                }
+                if (document.getElementById("d5").getAttribute("src").includes("7")) {
+                    dealerHand += 7;
+                }
+                if (document.getElementById("d5").getAttribute("src").includes("8")) {
+                    dealerHand += 8;
+                }
+                if (document.getElementById("d5").getAttribute("src").includes("9")) {
+                    dealerHand += 9;
+                }
+                if (document.getElementById("d5").getAttribute("src").includes("ooo")) {
+                    dealerHand += 10;
+                }
+                if (document.getElementById("d5").getAttribute("src").includes("xxx")) {
+                    dealerHand += 1;
+                    dHasAce = true;
+                }
+                document.getElementById("dealersTotal").innerHTML = "Dealer's total: " + dealerHand;
+            }
+            
+            if (dealerHand <= 16) {
+                document.getElementById("d6").setAttribute("src", "images/cards/4h.png");
+                
+                if (document.getElementById("d6").getAttribute("src").includes("2")) {
+                    dealerHand += 2;
+                }
+                if (document.getElementById("d6").getAttribute("src").includes("3")) {
+                    dealerHand += 3;
+                }
+                if (document.getElementById("d6").getAttribute("src").includes("4")) {
+                    dealerHand += 4;
+                }
+                if (document.getElementById("d6").getAttribute("src").includes("5")) {
+                    dealerHand += 5;
+                }
+                if (document.getElementById("d6").getAttribute("src").includes("6")) {
+                    dealerHand += 6;
+                }
+                if (document.getElementById("d6").getAttribute("src").includes("7")) {
+                    dealerHand += 7;
+                }
+                if (document.getElementById("d6").getAttribute("src").includes("8")) {
+                    dealerHand += 8;
+                }
+                if (document.getElementById("d6").getAttribute("src").includes("9")) {
+                    dealerHand += 9;
+                }
+                if (document.getElementById("d6").getAttribute("src").includes("ooo")) {
+                    dealerHand += 10;
+                }
+                if (document.getElementById("d6").getAttribute("src").includes("xxx")) {
+                    dealerHand += 1;
+                    dHasAce = true;
+                }
+                document.getElementById("dealersTotal").innerHTML = "Dealer's total: " + dealerHand;
+            
+            }  
+            if (dealerHand <= 16) {
+                document.getElementById("d7").setAttribute("src", "images/cards/4h.png");
+                
+                if (document.getElementById("d7").getAttribute("src").includes("2")) {
+                    dealerHand += 2;
+                }
+                if (document.getElementById("d7").getAttribute("src").includes("3")) {
+                    dealerHand += 3;
+                }
+                if (document.getElementById("d7").getAttribute("src").includes("4")) {
+                    dealerHand += 4;
+                }
+                if (document.getElementById("d7").getAttribute("src").includes("5")) {
+                    dealerHand += 5;
+                }
+                if (document.getElementById("d7").getAttribute("src").includes("6")) {
+                    dealerHand += 6;
+                }
+                if (document.getElementById("d7").getAttribute("src").includes("7")) {
+                    dealerHand += 7;
+                }
+                if (document.getElementById("d7").getAttribute("src").includes("8")) {
+                    dealerHand += 8;
+                }
+                if (document.getElementById("d7").getAttribute("src").includes("9")) {
+                    dealerHand += 9;
+                }
+                if (document.getElementById("d7").getAttribute("src").includes("ooo")) {
+                    dealerHand += 10;
+                }
+                if (document.getElementById("d7").getAttribute("src").includes("xxx")) {
+                    dealerHand += 1;
+                    dHasAce = true;
+                }
+                document.getElementById("dealersTotal").innerHTML = "Dealer's total: " + dealerHand;
+            }
+            
+            // declare winner
+            if (playerHand > dealerHand || dealerHand > 21) {
+                document.getElementById("score").innerHTML = "You WIN!";
+                pWins += 1;
+            } else if (playerHand < dealerHand){
+                document.getElementById("score").innerHTML = "You LOSE!";
+                dWins += 1;
+            }else if (playerHand == dealerHand){
+                document.getElementById("score").innerHTML = "You PUSH!";
+            }
+            document.getElementById("pScore").innerHTML = "Player wins: " + pWins;
+            document.getElementById("dScore").innerHTML = "Dealer wins: " + dWins;
+            document.getElementById("dealButton").disabled = false;
+        }
+    </script>
+</head>
+
+<body onload="setup();">
+    <div class="table">
+        <h1>DEALER</h1>
+        <div class="dealer card dealersCard1">
+            <img src="" id="d1">
+        </div>
+        <div class="dealer card dealersCard2">
+            <img src="" id="d2">
+        </div>
+        <div class="dealer card dealersCard3">
+            <img src="" id="d3">
+        </div>
+        <div class="dealer card dealersCard4">
+             <img src="" id="d4">
+        </div>
+        <div class="dealer card dealersCard5">
+            <img src="" id="d5">
+        </div>
+        <div class="dealer card dealersCard6">
+             <img src="" id="d6">
+        </div>
+        <div class="dealer card dealersCard7">
+            
+            <img src="" id="d7">
+        </div>
+        
+        <p id="dealersTotal"></p>
+        
+        <h1>PLAYER</h1>
+        <div class="player card playersCard1">
+            <img src="" id="p1">
+        </div>
+        <div class="player card playersCard2">
+            <img src="" id="p2">
+        </div>
+        <div class="player card playersCard3">
+            <img src="" id="p3">
+        </div>
+        <div class="player card playersCard4">
+            <img src="" id="p4">
+        </div>
+        <div class="player card playersCard5">
+            <img src="" id="p5">
+        </div>
+        <div class="player card playersCard6">
+            <img src="" id="p6">
+        </div>
+        <div class="player card playersCard7">
+            <img src="" id="p7">
+        </div>
+        
+        <p id="playersTotal"></p>
+        <br><br>
+        
+        <button id="dealButton" type="submit" value="Deal" onclick="dealCards();">Deal</button>
+        <button id="hitButton" type="submit" value="Hit" onclick="hit();">Hit</button>
+        <button id="stayButton" type="submit" value="Stay" onclick="stay();">Stay</button>
+    </div>
+    <div id="score" class="scoreBoard"></div>
+    <div id="pScore" class="pScore"></div>
+    
+    <div id="dScore" class="dScore"></div>
+</body>
+
+</html>

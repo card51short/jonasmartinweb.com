@@ -1,0 +1,234 @@
+body {
+    background-image: url("../images/bodyBackground.png");
+    height: 100%;
+    width: 100%;
+}
+
+.main {
+    width: 100em;
+    height: 55em;
+    
+    margin: auto;
+    opacity: .8;
+    
+}
+
+.suit {
+    width: 2em;
+    height: 2.5em;
+    
+    margin-bottom: 1.5em;
+    
+}
+
+.border {
+    border: 3px groove maroon;
+}
+
+.border2 {
+    border: 3px groove maroon;
+}
+
+nav {
+    background-color: white;
+    width: 70em;
+    height: 6em;
+    margin-left: 23%;
+    opacity: .7;
+    border: 10px groove maroon;
+    
+}
+
+.logo {
+    margin-top: 1em;
+    margin-left: 10em;
+    width: 75%;
+    height: 10em;
+    opacity: 1;
+    background-color: #98cb00;
+    
+}
+
+.buttonImage {
+    width: 200px;
+    height: 100px;
+    margin-left: 1.5em;
+    
+    
+}
+
+.fakeBorder {
+    border: 0px groove maroon;
+}
+
+.content {
+    width: 90em;
+    height: 50em;
+    background-color: white;
+    margin: auto;
+    margin-top: 2em;
+}
+
+.aboutdiv {
+    width: 90em;
+    height: 50em;
+    background-color: white;
+    margin: auto;
+    margin-top: 2em;
+    
+}
+
+.workdiv {
+    width: 90em;
+    height: 50em;
+    background-color: white;
+    margin: auto;
+    margin-top: 2em;
+    text-align: center;
+    
+}
+
+.emaildiv {
+    width: 90em;
+    height: 50em;
+    background-color: white;
+    margin: auto;
+    margin-top: 2em;
+}
+
+.home {
+    background-color: #98cb00;
+    margin-left: 25%;
+}
+
+.homeClass {
+    background-color: white;
+    opacity: 1;
+}
+
+.about{
+    width: 100%;
+    height: 70%;
+    
+    
+
+}
+
+.aboutGlow {
+    
+}
+
+.about2{
+    width: 95%;
+    height: 20%;
+    border: 2px black groove;
+    background-color: #98cb00;
+    margin-left: 2em;
+}
+
+.project1Image {
+    
+    border: 3em red groove;
+    width: 25%;
+    height: 20%;
+}
+
+.project2Image {
+    
+    border: 3em blue groove;
+    width: 25%;
+    height: 20%;
+}
+
+.project3Image {
+    
+    border: 3em yellow groove;
+    width: 25%;
+    height: 20%;
+}
+
+.project4Image {
+    
+    border: 3em green groove;
+    width: 25%;
+    height: 20%;
+}
+
+.project5Image {
+    
+    border: 3em purple groove;
+    width: 25%;
+    height: 20%;
+}
+
+.project6Image {
+    
+    border: 3em orange groove;
+    width: 25%;
+    height: 20%;
+}
+
+.form {
+    margin: auto;
+    border: 5px black dashed;
+    width: 50%;
+    height: 50%;
+}
+
+input {
+    width: 30%;
+    margin-left: 1.5em;
+}
+
+textarea {
+    margin-left: 1.5em;
+}
+
+button {
+    float: right;
+    margin-right: 4em;
+}
+
+.formP {
+    margin-left: 1.5em;
+    font-weight: bold;
+}
+
+.emailStrip {
+    margin-left: 26em;
+}
+
+.mySlides {
+    margin:auto;
+    height: 275px;
+    width: 600px;
+    border: 5px black double;
+}
+
+.resumeImage {
+    margin: 1em;
+    border: 2px black groove;
+    width: 435px;
+    height: 200px;
+    float: left;
+}
+
+.resumeImage2 {
+    margin: 1em;
+    border: 2px black groove;
+    width: 450px;
+    height: 200px;
+    float: right;
+}
+
+.resumeText {
+
+}
+
+.projectDescription {
+    
+    width: 90%;
+    height: 20%;
+    margin: auto;
+    padding: 1em;
+}

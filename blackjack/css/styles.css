@@ -1,0 +1,56 @@
+body {
+    background-color: black;
+}
+
+.table{
+    width: 75em;
+    height: 40em;
+    padding: 2em;
+    background-image: url("../images/background.png");
+    margin: auto;
+}
+
+.card{
+    width: 120px;
+    height: 175px;
+    display: inline;
+}
+
+p{
+    color: white;
+    
+}
+
+button {
+    width: 10em;
+    height: 5em;
+    font-size: .8em;
+}
+
+.scoreBoard {
+    margin: auto;
+    background-color: white;
+    width: 7em;
+    height: 1em;
+    color: red;
+    font-size: 30px;
+}
+
+.pScore {
+    margin: auto;
+    width: 8em;
+    height: 45px;
+    font-size: 25px;
+    color: black;
+    background-color: white;
+}
+
+.dScore {
+    margin: auto;
+    width: 8em;
+    height: 45px;
+    font-size: 25px;
+    color: black;
+    background-color: white;
+}
+
